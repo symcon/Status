@@ -22,17 +22,21 @@ $content .= str_pad("Name", $width) . " | Style | Tests" . PHP_EOL;
 $content .= str_pad("", $width, "-") . " | ----- | -----" . PHP_EOL;
 
 foreach($repos as $repo) {
-    if(substr($repo["name"], 0, 4) == "Skin")
+    if (substr($repo["name"], 0, 4) == "Skin")
         continue;
-    if(substr($repo["name"], 0, 5) == "Style")
-        continue;
-
-    if(in_array($repo["name"], ["AndroidSDK", "Status"]))
+    if (substr($repo["name"], 0, 5) == "Style")
         continue;
 
-    $content .= str_pad($repo["name"], $width) . " | ";
-    $content .= "[![Check Style](https://github.com/symcon/".$repo["name"]."/workflows/Check%20Style/badge.svg)](https://github.com/symcon/".$repo["name"]."/actions)". " | ";
-    $content .= "[![Run Tests](https://github.com/symcon/".$repo["name"]."/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/".$repo["name"]."/actions)" . PHP_EOL;
+    if (in_array($repo["name"], ["AndroidSDK", "Status"]))
+        continue;
+
+    if (in_array($repo["name"], ["SymconBC", "SymconBRELAG", "SymconBroken", "SymconHelper", "SymconIncompatible", "SymconLJ", "SymconMisc", "SymconTest", "SymconWebinar", "WeidmannEmlog"])) {
+        $content .= str_pad($repo["name"], $width) . " | N/A   | N/A" . PHP_EOL;
+    } else {
+        $content .= str_pad($repo["name"], $width) . " | ";
+        $content .= "[![Check Style](https://github.com/symcon/" . $repo["name"] . "/workflows/Check%20Style/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
+        $content .= "[![Run Tests](https://github.com/symcon/" . $repo["name"] . "/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . PHP_EOL;
+    }
 }
 
 file_put_contents("README.md", $content);
