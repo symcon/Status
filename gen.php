@@ -14,12 +14,10 @@ for($i = 1; $i <= 2; $i++) {
     $repos = array_merge($repos, json_decode(file_get_contents("https://api.github.com/user/14051084/repos?page=" . $i, false, $context), true));
 }
 
-$width = 25;
-
 $content = "### Übersicht aller PHP-Module und deren Check Status" . PHP_EOL;
 $content .= PHP_EOL;
-$content .= str_pad("Name", $width) . " | Style | Tests" . PHP_EOL;
-$content .= str_pad("", $width, "-") . " | ----- | -----" . PHP_EOL;
+$content .= "Name | Style | Tests" . PHP_EOL;
+$content .= "---- | ----- | -----" . PHP_EOL;
 
 foreach($repos as $repo) {
     if (substr($repo["name"], 0, 4) == "Skin")
@@ -30,10 +28,10 @@ foreach($repos as $repo) {
     if (in_array($repo["name"], ["AndroidSDK", "Status"]))
         continue;
 
+    $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) | ";
     if (in_array($repo["name"], ["SymconBC", "SymconBRELAG", "SymconBroken", "SymconHelper", "SymconIncompatible", "SymconLJ", "SymconMisc", "SymconTest", "SymconWebinar", "WeidmannEmlog"])) {
-        $content .= str_pad($repo["name"], $width) . " | N/A   | N/A" . PHP_EOL;
+        $content .= "N/A   | N/A" . PHP_EOL;
     } else {
-        $content .= str_pad($repo["name"], $width) . " | ";
         $content .= "[![Check Style](https://github.com/symcon/" . $repo["name"] . "/workflows/Check%20Style/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
         $content .= "[![Run Tests](https://github.com/symcon/" . $repo["name"] . "/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . PHP_EOL;
     }
