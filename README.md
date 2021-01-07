@@ -1,6 +1,6 @@
 ### Übersicht aller PHP-Module und deren Check Status
-Name | Style | Tests
 
+Name | Style | Tests
 ---- | ----- | -----
 [action-style](https://github.com/symcon/action-style/) | N/A   | N/A
 [action-tests](https://github.com/symcon/action-tests/) | N/A   | N/A
