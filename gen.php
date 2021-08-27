@@ -1,5 +1,18 @@
 <?php
 
+$ignore = [
+    "SymconBC",
+    "SymconBRELAG",
+    "SymconBroken",
+    "SymconHelper",
+    "SymconIncompatible",
+    "SymconLJ",
+    "SymconMisc",
+    "SymconTest",
+    "SymconWebinar",
+    "WeidmannEmlog"
+];
+
 $opts = [
     "http" => [
         "method" => "GET",
@@ -9,9 +22,10 @@ $opts = [
 
 $context = stream_context_create($opts);
 
-$repos = [];
-for($i = 1; $i <= 2; $i++) {
-    $repos = array_merge($repos, json_decode(file_get_contents("https://api.github.com/user/14051084/repos?page=" . $i, false, $context), true));
+$repos = json_decode(file_get_contents("https://api.github.com/user/14051084/repos?per_page=100", false, $context), true);
+
+if(sizeof($repos) == 100) {
+    die("We need to implement pagination");
 }
 
 $content = "### Übersicht aller PHP-Module und deren Check Status" . PHP_EOL;
@@ -24,12 +38,13 @@ foreach($repos as $repo) {
         continue;
     if (substr($repo["name"], 0, 5) == "Style")
         continue;
-
+    if (substr($repo["name"], 0, 7) == "action-")
+        continue;
     if (in_array($repo["name"], ["AndroidSDK", "Status"]))
         continue;
 
     $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) | ";
-    if (in_array($repo["name"], ["SymconBC", "SymconBRELAG", "SymconBroken", "SymconHelper", "SymconIncompatible", "SymconLJ", "SymconMisc", "SymconTest", "SymconWebinar", "WeidmannEmlog"])) {
+    if (in_array($repo["name"], $ignore)) {
         $content .= "N/A   | N/A" . PHP_EOL;
     } else {
         $content .= "[![Check Style](https://github.com/symcon/" . $repo["name"] . "/workflows/Check%20Style/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
