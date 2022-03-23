@@ -12,6 +12,7 @@ $ignore = [
 ];
 
 $store = [
+    "Energiezaehler",
     "Gardena",
     "HomeConnect",
     "Rechenmodule",
@@ -22,6 +23,13 @@ $store = [
     "SymconREHAU",
     "SymconReport",
     "SymconSpotify"
+];
+
+$url = [
+    "Alexa",
+    "Assistant",
+    "Gardena",
+    "HomeConnect"
 ];
 
 $opts = [
@@ -42,7 +50,7 @@ if(sizeof($repos) == 100) {
 $modules = json_decode(file_get_contents("https://symcon-store.s3.eu-west-1.amazonaws.com/modules.json"));
 
 function hasURL($name) {
-    global $modules;
+    global $modules, $url;
     foreach ($modules as $module) {
         if (!isset($module->url))
             continue;
@@ -50,7 +58,8 @@ function hasURL($name) {
             return true;
         }
     }
-    return false;
+    // Fallback to manually checked modules
+    return in_array($name, $url);
 }
 
 function isInStore($name) {
@@ -60,7 +69,7 @@ function isInStore($name) {
             return true;
         }
     }
-    // Fallback if direct name matching did not work
+    // Fallback to manually checked modules
     return in_array($name, $store);
 }
 
