@@ -73,25 +73,29 @@ function isInStore($name) {
     return in_array($name, $store);
 }
 
+function filterRepo($repo) {
+    if (substr($repo, 0, 4) == "Skin")
+        return true;
+    if (substr($repo, 0, 5) == "Style")
+        return true;
+    if (substr($repo, 0, 7) == "action-")
+        return true;
+    if (in_array($repo, ["AndroidSDK", "Status"]))
+        return true;
+    return false;
+}
+
 $content = "### Übersicht aller PHP-Module und deren Check Status" . PHP_EOL;
 $content .= PHP_EOL;
 $content .= "Name | Style | Tests | Store | URL" . PHP_EOL;
 $content .= "---- | ----- | ----- | ----- | ---" . PHP_EOL;
 
 foreach($repos as $repo) {
-    if (substr($repo["name"], 0, 4) == "Skin")
-        continue;
-    if (substr($repo["name"], 0, 5) == "Style")
-        continue;
-    if (substr($repo["name"], 0, 7) == "action-")
-        continue;
-    if (in_array($repo["name"], ["AndroidSDK", "Status"]))
+    if (filterRepo($repo["name"]))
         continue;
 
-    $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) | ";
-    if (in_array($repo["name"], $ignore)) {
-        $content .= "N/A   | N/A   | N/A   | N/A" . PHP_EOL;
-    } else {
+    if (!in_array($repo["name"], $ignore)) {
+        $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) | ";
         $content .= "[![Check Style](https://github.com/symcon/" . $repo["name"] . "/workflows/Check%20Style/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
         $content .= "[![Run Tests](https://github.com/symcon/" . $repo["name"] . "/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
         if (isInStore($repo["name"])) {
@@ -102,6 +106,22 @@ foreach($repos as $repo) {
             $content .= " ✅";
         }
         $content .= PHP_EOL;
+    }
+}
+
+$content .= PHP_EOL;
+
+$content .= "### Veraltete/Besondere PHP-Module" . PHP_EOL;
+$content .= PHP_EOL;
+$content .= "Name |" . PHP_EOL;
+$content .= "---- |" . PHP_EOL;
+
+foreach($repos as $repo) {
+    if (filterRepo($repo["name"]))
+        continue;
+
+    if (in_array($repo["name"], $ignore)) {
+        $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) |" . PHP_EOL;
     }
 }
 

@@ -30,21 +30,14 @@ Name | Style | Tests | Store | URL
 [Spielesammlung](https://github.com/symcon/Spielesammlung/) | [![Check Style](https://github.com/symcon/Spielesammlung/workflows/Check%20Style/badge.svg)](https://github.com/symcon/Spielesammlung/actions) | [![Run Tests](https://github.com/symcon/Spielesammlung/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/Spielesammlung/actions) |  | 
 [Stoerungsanzeige](https://github.com/symcon/Stoerungsanzeige/) | [![Check Style](https://github.com/symcon/Stoerungsanzeige/workflows/Check%20Style/badge.svg)](https://github.com/symcon/Stoerungsanzeige/actions) | [![Run Tests](https://github.com/symcon/Stoerungsanzeige/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/Stoerungsanzeige/actions) |  | 
 [StromAbrechnungsModul](https://github.com/symcon/StromAbrechnungsModul/) | [![Check Style](https://github.com/symcon/StromAbrechnungsModul/workflows/Check%20Style/badge.svg)](https://github.com/symcon/StromAbrechnungsModul/actions) | [![Run Tests](https://github.com/symcon/StromAbrechnungsModul/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/StromAbrechnungsModul/actions) |  | 
-[SymconBC](https://github.com/symcon/SymconBC/) | N/A   | N/A   | N/A   | N/A
-[SymconBroken](https://github.com/symcon/SymconBroken/) | N/A   | N/A   | N/A   | N/A
 [SymconConfiguration](https://github.com/symcon/SymconConfiguration/) | [![Check Style](https://github.com/symcon/SymconConfiguration/workflows/Check%20Style/badge.svg)](https://github.com/symcon/SymconConfiguration/actions) | [![Run Tests](https://github.com/symcon/SymconConfiguration/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/SymconConfiguration/actions) |  ✅ |  ✅
 [SymconGraph](https://github.com/symcon/SymconGraph/) | [![Check Style](https://github.com/symcon/SymconGraph/workflows/Check%20Style/badge.svg)](https://github.com/symcon/SymconGraph/actions) | [![Run Tests](https://github.com/symcon/SymconGraph/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/SymconGraph/actions) |  ✅ |  ✅
-[SymconHelper](https://github.com/symcon/SymconHelper/) | N/A   | N/A   | N/A   | N/A
-[SymconIncompatible](https://github.com/symcon/SymconIncompatible/) | N/A   | N/A   | N/A   | N/A
 [SymconLJ](https://github.com/symcon/SymconLJ/) | [![Check Style](https://github.com/symcon/SymconLJ/workflows/Check%20Style/badge.svg)](https://github.com/symcon/SymconLJ/actions) | [![Run Tests](https://github.com/symcon/SymconLJ/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/SymconLJ/actions) |  ✅ | 
 [SymconMH](https://github.com/symcon/SymconMH/) | [![Check Style](https://github.com/symcon/SymconMH/workflows/Check%20Style/badge.svg)](https://github.com/symcon/SymconMH/actions) | [![Run Tests](https://github.com/symcon/SymconMH/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/SymconMH/actions) |  ✅ |  ✅
-[SymconMisc](https://github.com/symcon/SymconMisc/) | N/A   | N/A   | N/A   | N/A
 [SymconREHAU](https://github.com/symcon/SymconREHAU/) | [![Check Style](https://github.com/symcon/SymconREHAU/workflows/Check%20Style/badge.svg)](https://github.com/symcon/SymconREHAU/actions) | [![Run Tests](https://github.com/symcon/SymconREHAU/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/SymconREHAU/actions) |  ✅ |  ✅
 [SymconReport](https://github.com/symcon/SymconReport/) | [![Check Style](https://github.com/symcon/SymconReport/workflows/Check%20Style/badge.svg)](https://github.com/symcon/SymconReport/actions) | [![Run Tests](https://github.com/symcon/SymconReport/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/SymconReport/actions) |  ✅ |  ✅
 [SymconSpotify](https://github.com/symcon/SymconSpotify/) | [![Check Style](https://github.com/symcon/SymconSpotify/workflows/Check%20Style/badge.svg)](https://github.com/symcon/SymconSpotify/actions) | [![Run Tests](https://github.com/symcon/SymconSpotify/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/SymconSpotify/actions) |  ✅ | 
 [SymconStubs](https://github.com/symcon/SymconStubs/) | [![Check Style](https://github.com/symcon/SymconStubs/workflows/Check%20Style/badge.svg)](https://github.com/symcon/SymconStubs/actions) | [![Run Tests](https://github.com/symcon/SymconStubs/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/SymconStubs/actions) |  | 
-[SymconTest](https://github.com/symcon/SymconTest/) | N/A   | N/A   | N/A   | N/A
-[SymconWebinar](https://github.com/symcon/SymconWebinar/) | N/A   | N/A   | N/A   | N/A
 [SzenenSteuerung](https://github.com/symcon/SzenenSteuerung/) | [![Check Style](https://github.com/symcon/SzenenSteuerung/workflows/Check%20Style/badge.svg)](https://github.com/symcon/SzenenSteuerung/actions) | [![Run Tests](https://github.com/symcon/SzenenSteuerung/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/SzenenSteuerung/actions) |  ✅ |  ✅
 [Telefonansage](https://github.com/symcon/Telefonansage/) | [![Check Style](https://github.com/symcon/Telefonansage/workflows/Check%20Style/badge.svg)](https://github.com/symcon/Telefonansage/actions) | [![Run Tests](https://github.com/symcon/Telefonansage/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/Telefonansage/actions) |  ✅ |  ✅
 [Telefonkette](https://github.com/symcon/Telefonkette/) | [![Check Style](https://github.com/symcon/Telefonkette/workflows/Check%20Style/badge.svg)](https://github.com/symcon/Telefonkette/actions) | [![Run Tests](https://github.com/symcon/Telefonkette/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/Telefonkette/actions) |  ✅ |  ✅
@@ -60,8 +53,20 @@ Name | Style | Tests | Store | URL
 [VirtuellerZaehler](https://github.com/symcon/VirtuellerZaehler/) | [![Check Style](https://github.com/symcon/VirtuellerZaehler/workflows/Check%20Style/badge.svg)](https://github.com/symcon/VirtuellerZaehler/actions) | [![Run Tests](https://github.com/symcon/VirtuellerZaehler/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/VirtuellerZaehler/actions) |  ✅ |  ✅
 [WasserAlarm](https://github.com/symcon/WasserAlarm/) | [![Check Style](https://github.com/symcon/WasserAlarm/workflows/Check%20Style/badge.svg)](https://github.com/symcon/WasserAlarm/actions) | [![Run Tests](https://github.com/symcon/WasserAlarm/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/WasserAlarm/actions) |  ✅ |  ✅
 [Watchdog](https://github.com/symcon/Watchdog/) | [![Check Style](https://github.com/symcon/Watchdog/workflows/Check%20Style/badge.svg)](https://github.com/symcon/Watchdog/actions) | [![Run Tests](https://github.com/symcon/Watchdog/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/Watchdog/actions) |  ✅ |  ✅
-[WeidmannEmlog](https://github.com/symcon/WeidmannEmlog/) | N/A   | N/A   | N/A   | N/A
 [WundergroundWeather](https://github.com/symcon/WundergroundWeather/) | [![Check Style](https://github.com/symcon/WundergroundWeather/workflows/Check%20Style/badge.svg)](https://github.com/symcon/WundergroundWeather/actions) | [![Run Tests](https://github.com/symcon/WundergroundWeather/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/WundergroundWeather/actions) |  ✅ |  ✅
 [ZaehlerstandTag](https://github.com/symcon/ZaehlerstandTag/) | [![Check Style](https://github.com/symcon/ZaehlerstandTag/workflows/Check%20Style/badge.svg)](https://github.com/symcon/ZaehlerstandTag/actions) | [![Run Tests](https://github.com/symcon/ZaehlerstandTag/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/ZaehlerstandTag/actions) |  ✅ |  ✅
 [ZaehlerUeberlauf](https://github.com/symcon/ZaehlerUeberlauf/) | [![Check Style](https://github.com/symcon/ZaehlerUeberlauf/workflows/Check%20Style/badge.svg)](https://github.com/symcon/ZaehlerUeberlauf/actions) | [![Run Tests](https://github.com/symcon/ZaehlerUeberlauf/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/ZaehlerUeberlauf/actions) |  ✅ |  ✅
 [ZufaelligeBeleuchtung](https://github.com/symcon/ZufaelligeBeleuchtung/) | [![Check Style](https://github.com/symcon/ZufaelligeBeleuchtung/workflows/Check%20Style/badge.svg)](https://github.com/symcon/ZufaelligeBeleuchtung/actions) | [![Run Tests](https://github.com/symcon/ZufaelligeBeleuchtung/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/ZufaelligeBeleuchtung/actions) |  ✅ |  ✅
+
+### Veraltete/Besondere PHP-Module
+
+Name |
+---- |
+[SymconBC](https://github.com/symcon/SymconBC/) |
+[SymconBroken](https://github.com/symcon/SymconBroken/) |
+[SymconHelper](https://github.com/symcon/SymconHelper/) |
+[SymconIncompatible](https://github.com/symcon/SymconIncompatible/) |
+[SymconMisc](https://github.com/symcon/SymconMisc/) |
+[SymconTest](https://github.com/symcon/SymconTest/) |
+[SymconWebinar](https://github.com/symcon/SymconWebinar/) |
+[WeidmannEmlog](https://github.com/symcon/WeidmannEmlog/) |
