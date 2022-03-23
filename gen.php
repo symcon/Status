@@ -2,15 +2,26 @@
 
 $ignore = [
     "SymconBC",
-    "SymconBRELAG",
     "SymconBroken",
     "SymconHelper",
     "SymconIncompatible",
-    "SymconLJ",
     "SymconMisc",
     "SymconTest",
     "SymconWebinar",
     "WeidmannEmlog"
+];
+
+$store = [
+    "Gardena",
+    "HomeConnect",
+    "Rechenmodule",
+    "SymconConfiguration",
+    "SymconGraph",
+    "SymconLJ",
+    "SymconMH",
+    "SymconREHAU",
+    "SymconReport",
+    "SymconSpotify"
 ];
 
 $opts = [
@@ -28,10 +39,35 @@ if(sizeof($repos) == 100) {
     die("We need to implement pagination");
 }
 
+$modules = json_decode(file_get_contents("https://symcon-store.s3.eu-west-1.amazonaws.com/modules.json"));
+
+function hasURL($name) {
+    global $modules;
+    foreach ($modules as $module) {
+        if (!isset($module->url))
+            continue;
+        if (strpos($module->url, "/symcon/" . $name) !== false) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function isInStore($name) {
+    global $modules, $store;
+    foreach ($modules as $module) {
+        if ($module->name == $name) {
+            return true;
+        }
+    }
+    // Fallback if direct name matching did not work
+    return in_array($name, $store);
+}
+
 $content = "### Übersicht aller PHP-Module und deren Check Status" . PHP_EOL;
 $content .= PHP_EOL;
-$content .= "Name | Style | Tests" . PHP_EOL;
-$content .= "---- | ----- | -----" . PHP_EOL;
+$content .= "Name | Style | Tests | Store | URL" . PHP_EOL;
+$content .= "---- | ----- | ----- | ----- | ---" . PHP_EOL;
 
 foreach($repos as $repo) {
     if (substr($repo["name"], 0, 4) == "Skin")
@@ -45,10 +81,18 @@ foreach($repos as $repo) {
 
     $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) | ";
     if (in_array($repo["name"], $ignore)) {
-        $content .= "N/A   | N/A" . PHP_EOL;
+        $content .= "N/A   | N/A   | N/A   | N/A" . PHP_EOL;
     } else {
         $content .= "[![Check Style](https://github.com/symcon/" . $repo["name"] . "/workflows/Check%20Style/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
-        $content .= "[![Run Tests](https://github.com/symcon/" . $repo["name"] . "/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . PHP_EOL;
+        $content .= "[![Run Tests](https://github.com/symcon/" . $repo["name"] . "/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
+        if (isInStore($repo["name"])) {
+            $content .= " ✅";
+        }
+        $content .= " | ";
+        if (hasURL($repo["name"])) {
+            $content .= " ✅";
+        }
+        $content .= PHP_EOL;
     }
 }
 
