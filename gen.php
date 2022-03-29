@@ -29,7 +29,8 @@ $url = [
     "Alexa",
     "Assistant",
     "Gardena",
-    "HomeConnect"
+    "HomeConnect",
+    "SymconLJ"
 ];
 
 $opts = [
