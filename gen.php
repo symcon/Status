@@ -86,11 +86,12 @@ function filterRepo($repo) {
     return false;
 }
 
-$content = "### Übersicht aller PHP-Module und deren Check Status" . PHP_EOL;
+$content = "### Übersicht aller PHP-Module der Symcon GmbH und deren Check Status" . PHP_EOL;
 $content .= PHP_EOL;
 $content .= "Name | Style | Tests | Store | URL" . PHP_EOL;
 $content .= "---- | ----- | ----- | ----- | ---" . PHP_EOL;
 
+$count = 0;
 foreach($repos as $repo) {
     if (filterRepo($repo["name"]))
         continue;
@@ -107,9 +108,12 @@ foreach($repos as $repo) {
             $content .= " ✅";
         }
         $content .= PHP_EOL;
+
+        $count++;
     }
 }
 
+$content .= "Aktuelle Anzahl der PHP-Module: " . $count . PHP_EOL;
 $content .= PHP_EOL;
 
 $content .= "### Veraltete/Besondere PHP-Module" . PHP_EOL;
