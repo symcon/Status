@@ -25,6 +25,19 @@ $store = [
     "SymconSpotify"
 ];
 
+$extern = [
+    "SyncMySQL",
+    "SymconREHAU",
+    "SymconMH",
+    "SymconLJ",
+    "FIWARE"
+];
+
+$unfinished = [
+    "Sonos",
+    "WaermemengenZaehler",
+];
+
 $url = [
     "Alexa",
     "Assistant",
@@ -96,7 +109,10 @@ foreach($repos as $repo) {
     if (filterRepo($repo["name"]))
         continue;
 
-    if (!in_array($repo["name"], $ignore)) {
+    if (!in_array($repo["name"], $ignore) 
+        && !in_array($repo["name"], $unfinished)
+        && !in_array($repo["name"], $extern)
+    ) {
         $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) | ";
         $content .= "[![Check Style](https://github.com/symcon/" . $repo["name"] . "/workflows/Check%20Style/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
         $content .= "[![Run Tests](https://github.com/symcon/" . $repo["name"] . "/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
@@ -126,6 +142,38 @@ foreach($repos as $repo) {
         continue;
 
     if (in_array($repo["name"], $ignore)) {
+        $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) |" . PHP_EOL;
+    }
+}
+$content .= PHP_EOL;
+$content .= PHP_EOL;
+
+$content .= "### Externe PHP-Module" . PHP_EOL;
+$content .= PHP_EOL;
+$content .= "Name |" . PHP_EOL;
+$content .= "---- |" . PHP_EOL;
+
+foreach($repos as $repo) {
+    if (filterRepo($repo["name"]))
+        continue;
+
+    if (in_array($repo["name"], $extern)) {
+        $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) |" . PHP_EOL;
+    }
+}
+$content .= PHP_EOL;
+$content .= PHP_EOL;
+
+$content .= "### Unvollständige PHP-Module" . PHP_EOL;
+$content .= PHP_EOL;
+$content .= "Name |" . PHP_EOL;
+$content .= "---- |" . PHP_EOL;
+
+foreach($repos as $repo) {
+    if (filterRepo($repo["name"]))
+        continue;
+
+    if (in_array($repo["name"], $unfinished)) {
         $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) |" . PHP_EOL;
     }
 }
