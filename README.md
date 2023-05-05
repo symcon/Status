@@ -54,14 +54,13 @@ Name | Style | Tests | Store | URL
 [VirtuelleMessstelle](https://github.com/symcon/VirtuelleMessstelle/) | [![Check Style](https://github.com/symcon/VirtuelleMessstelle/workflows/Check%20Style/badge.svg)](https://github.com/symcon/VirtuelleMessstelle/actions) | [![Run Tests](https://github.com/symcon/VirtuelleMessstelle/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/VirtuelleMessstelle/actions) |  | 
 [VirtuelleModule](https://github.com/symcon/VirtuelleModule/) | [![Check Style](https://github.com/symcon/VirtuelleModule/workflows/Check%20Style/badge.svg)](https://github.com/symcon/VirtuelleModule/actions) | [![Run Tests](https://github.com/symcon/VirtuelleModule/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/VirtuelleModule/actions) |  | 
 [VirtuellerZaehler](https://github.com/symcon/VirtuellerZaehler/) | [![Check Style](https://github.com/symcon/VirtuellerZaehler/workflows/Check%20Style/badge.svg)](https://github.com/symcon/VirtuellerZaehler/actions) | [![Run Tests](https://github.com/symcon/VirtuellerZaehler/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/VirtuellerZaehler/actions) |  | 
-[WaermemengenZaehler](https://github.com/symcon/WaermemengenZaehler/) | [![Check Style](https://github.com/symcon/WaermemengenZaehler/workflows/Check%20Style/badge.svg)](https://github.com/symcon/WaermemengenZaehler/actions) | [![Run Tests](https://github.com/symcon/WaermemengenZaehler/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/WaermemengenZaehler/actions) |  | 
 [WasserAlarm](https://github.com/symcon/WasserAlarm/) | [![Check Style](https://github.com/symcon/WasserAlarm/workflows/Check%20Style/badge.svg)](https://github.com/symcon/WasserAlarm/actions) | [![Run Tests](https://github.com/symcon/WasserAlarm/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/WasserAlarm/actions) |  | 
 [Watchdog](https://github.com/symcon/Watchdog/) | [![Check Style](https://github.com/symcon/Watchdog/workflows/Check%20Style/badge.svg)](https://github.com/symcon/Watchdog/actions) | [![Run Tests](https://github.com/symcon/Watchdog/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/Watchdog/actions) |  | 
 [WundergroundWeather](https://github.com/symcon/WundergroundWeather/) | [![Check Style](https://github.com/symcon/WundergroundWeather/workflows/Check%20Style/badge.svg)](https://github.com/symcon/WundergroundWeather/actions) | [![Run Tests](https://github.com/symcon/WundergroundWeather/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/WundergroundWeather/actions) |  | 
 [ZaehlerstandTag](https://github.com/symcon/ZaehlerstandTag/) | [![Check Style](https://github.com/symcon/ZaehlerstandTag/workflows/Check%20Style/badge.svg)](https://github.com/symcon/ZaehlerstandTag/actions) | [![Run Tests](https://github.com/symcon/ZaehlerstandTag/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/ZaehlerstandTag/actions) |  | 
 [ZaehlerUeberlauf](https://github.com/symcon/ZaehlerUeberlauf/) | [![Check Style](https://github.com/symcon/ZaehlerUeberlauf/workflows/Check%20Style/badge.svg)](https://github.com/symcon/ZaehlerUeberlauf/actions) | [![Run Tests](https://github.com/symcon/ZaehlerUeberlauf/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/ZaehlerUeberlauf/actions) |  | 
 [ZufaelligeBeleuchtung](https://github.com/symcon/ZufaelligeBeleuchtung/) | [![Check Style](https://github.com/symcon/ZufaelligeBeleuchtung/workflows/Check%20Style/badge.svg)](https://github.com/symcon/ZufaelligeBeleuchtung/actions) | [![Run Tests](https://github.com/symcon/ZufaelligeBeleuchtung/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/ZufaelligeBeleuchtung/actions) |  | 
-Aktuelle Anzahl der PHP-Module: 59
+Aktuelle Anzahl der PHP-Module: 58
 
 ### Veraltete/Besondere PHP-Module
 
@@ -93,3 +92,4 @@ Name |
 Name |
 ---- |
 [Sonos](https://github.com/symcon/Sonos/) |
+[WaermemengenZaehler](https://github.com/symcon/WaermemengenZaehler/) |

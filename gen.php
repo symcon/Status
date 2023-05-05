@@ -35,7 +35,7 @@ $extern = [
 
 $unfinished = [
     "Sonos",
-    "Waermemengenzaehler",
+    "WaermemengenZaehler",
 ];
 
 $url = [
