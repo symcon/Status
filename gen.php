@@ -8,7 +8,9 @@ $ignore = [
     "SymconMisc",
     "SymconTest",
     "SymconWebinar",
-    "WeidmannEmlog"
+    "WeidmannEmlog",
+    "re",
+    "baresip"
 ];
 
 $store = [
