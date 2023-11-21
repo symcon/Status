@@ -63,11 +63,13 @@ if(sizeof($repos) == 100) {
 
 $modules = json_decode(file_get_contents("https://symcon-store.s3.eu-west-1.amazonaws.com/modules.json"));
 
-function hasURL($name) {
+function hasURL($name)
+{
     global $modules, $url;
     foreach ($modules as $module) {
-        if (!isset($module->url))
+        if (!isset($module->url)) {
             continue;
+        }
         if (strpos($module->url, "/symcon/" . $name) !== false) {
             return true;
         }
@@ -76,7 +78,8 @@ function hasURL($name) {
     return in_array($name, $url);
 }
 
-function isInStore($name) {
+function isInStore($name)
+{
     global $modules, $store;
     foreach ($modules as $module) {
         if ($module->name == $name) {
@@ -87,15 +90,20 @@ function isInStore($name) {
     return in_array($name, $store);
 }
 
-function filterRepo($repo) {
-    if (substr($repo, 0, 4) == "Skin")
+function filterRepo($repo)
+{
+    if (substr($repo, 0, 4) == "Skin") {
         return true;
-    if (substr($repo, 0, 5) == "Style")
+    }
+    if (substr($repo, 0, 5) == "Style") {
         return true;
-    if (substr($repo, 0, 7) == "action-")
+    }
+    if (substr($repo, 0, 7) == "action-") {
         return true;
-    if (in_array($repo, ["AndroidSDK", "Status"]))
+    }
+    if (in_array($repo, ["AndroidSDK", "Status"])) {
         return true;
+    }
     return false;
 }
 
@@ -106,10 +114,11 @@ $content .= "---- | ----- | ----- | ----- | ---" . PHP_EOL;
 
 $count = 0;
 foreach($repos as $repo) {
-    if (filterRepo($repo["name"]))
+    if (filterRepo($repo["name"])) {
         continue;
+    }
 
-    if (!in_array($repo["name"], $ignore) 
+    if (!in_array($repo["name"], $ignore)
         && !in_array($repo["name"], $unfinished)
         && !in_array($repo["name"], $extern)
     ) {
@@ -138,8 +147,9 @@ $content .= "Name |" . PHP_EOL;
 $content .= "---- |" . PHP_EOL;
 
 foreach($repos as $repo) {
-    if (filterRepo($repo["name"]))
+    if (filterRepo($repo["name"])) {
         continue;
+    }
 
     if (in_array($repo["name"], $ignore)) {
         $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) |" . PHP_EOL;
@@ -154,8 +164,9 @@ $content .= "Name |" . PHP_EOL;
 $content .= "---- |" . PHP_EOL;
 
 foreach($repos as $repo) {
-    if (filterRepo($repo["name"]))
+    if (filterRepo($repo["name"])) {
         continue;
+    }
 
     if (in_array($repo["name"], $extern)) {
         $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) |" . PHP_EOL;
@@ -170,8 +181,9 @@ $content .= "Name |" . PHP_EOL;
 $content .= "---- |" . PHP_EOL;
 
 foreach($repos as $repo) {
-    if (filterRepo($repo["name"]))
+    if (filterRepo($repo["name"])) {
         continue;
+    }
 
     if (in_array($repo["name"], $unfinished)) {
         $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) |" . PHP_EOL;
@@ -181,19 +193,18 @@ foreach($repos as $repo) {
 file_put_contents("README.md", $content);
 
 //Copy&Paste: https://www.php.net/manual/de/reserved.variables.httpresponseheader.php
-function parseHeaders( $headers )
+function parseHeaders($headers)
 {
     $head = array();
-    foreach( $headers as $k=>$v )
-    {
-        $t = explode( ':', $v, 2 );
-        if( isset( $t[1] ) )
-            $head[ trim($t[0]) ] = trim( $t[1] );
-        else
-        {
+    foreach($headers as $k => $v) {
+        $t = explode(':', $v, 2);
+        if(isset($t[1])) {
+            $head[ trim($t[0]) ] = trim($t[1]);
+        } else {
             $head[] = $v;
-            if( preg_match( "#HTTP/[0-9\.]+\s+([0-9]+)#",$v, $out ) )
+            if(preg_match("#HTTP/[0-9\.]+\s+([0-9]+)#", $v, $out)) {
                 $head['reponse_code'] = intval($out[1]);
+            }
         }
     }
     return $head;
