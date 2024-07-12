@@ -10,9 +10,9 @@ $ignore = [
     "SymconWebinar",
     "WeidmannEmlog",
     "re",
-    "baresip"
+    "baresip",
+    "SymconStubs"
 ];
-
 $store = [
     "Energiezaehler",
     "Gardena",
@@ -26,7 +26,6 @@ $store = [
     "SymconReport",
     "SymconSpotify"
 ];
-
 $extern = [
     "SyncMySQL",
     "SymconREHAU",
@@ -34,12 +33,10 @@ $extern = [
     "SymconLJ",
     "FIWARE"
 ];
-
 $unfinished = [
     "Sonos",
     "WaermemengenZaehler",
 ];
-
 $url = [
     "Alexa",
     "Assistant",
@@ -47,34 +44,49 @@ $url = [
     "HomeConnect",
     "SymconLJ"
 ];
+// Repo => ModuleStore
+$translation = [
+    "VerbrauchZeitspanne" => "verbrauchinzeitspanne",
+    "TTSAWSPolly" => "texttospeechawspolly",
+    "SymconBackup" => "backupftpftpssftp",
+    "SymconGraph" => "webgraph",
+    "SymconSpotify" => "spotify"
+];
 
+//get the github repos
 $opts = [
     "http" => [
         "method" => "GET",
         "header" => "User-Agent: Awesome-PHP\r\n"
     ]
 ];
-
 $context = stream_context_create($opts);
-
 $repos = json_decode(file_get_contents("https://api.github.com/user/14051084/repos?per_page=100", false, $context), true);
-
 if(sizeof($repos) == 100) {
     die("We need to implement pagination");
 }
 
-$modules = json_decode(file_get_contents("https://symcon-store.s3.eu-west-1.amazonaws.com/modules.json"));
+// get the modules from the dump endpoint
+$modules = json_decode(file_get_contents("https://api-dev.symcon.de/store/dump?language=de"), true)["modules"];
+$ourModules = array_filter($modules, function ($key): bool {
+    return strpos($key, "de.symcon") === 0;
+}, ARRAY_FILTER_USE_KEY);
+$modules = [];
+foreach ($ourModules as $bundleID => $module) {
+    foreach ($module as $channel) {
+        if($channel["channel"] == "stable") {
+            $moduleInstance = new Module($channel, $bundleID);
+            $modules[$moduleInstance->moduleName] = $moduleInstance;
+        }
+    }
+}
 
 function hasURL($name)
 {
     global $modules, $url;
-    foreach ($modules as $module) {
-        if (!isset($module->url)) {
-            continue;
-        }
-        if (strpos($module->url, "/symcon/" . $name) !== false) {
-            return true;
-        }
+    $module = getModule($name);
+    if($module !== false) {
+        return $module->urlStatus;
     }
     // Fallback to manually checked modules
     return in_array($name, $url);
@@ -83,13 +95,30 @@ function hasURL($name)
 function isInStore($name)
 {
     global $modules, $store;
-    foreach ($modules as $module) {
-        if ($module->name == $name) {
-            return true;
-        }
+    $module = getModule($name);
+    if ($module !== false && $module->inStore) {
+        return true;
     }
+
     // Fallback to manually checked modules
     return in_array($name, $store);
+}
+
+function getModule($name) : Module|false{
+    global $modules, $translation;
+    if(key_exists(strtolower($name),$modules)) {
+        return $modules[strtolower($name)];
+    }
+    if(key_exists(strtolower($name),$translation)){
+        return $modules[$translation[$name]];
+    }
+    foreach ($modules as $module) {
+        if($module->libraryName == $name){
+            return $module;
+        }
+    }
+    var_dump("Module $name is not found");
+    return false;
 }
 
 function filterRepo($repo)
@@ -124,6 +153,7 @@ foreach($repos as $repo) {
         && !in_array($repo["name"], $unfinished)
         && !in_array($repo["name"], $extern)
     ) {
+        var_dump("Repo:" . $repo["name"]);
         $content .= "[" . $repo["name"] . "](https://github.com/symcon/" . $repo["name"] . "/) | ";
         $content .= "[![Check Style](https://github.com/symcon/" . $repo["name"] . "/workflows/Check%20Style/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
         $content .= "[![Run Tests](https://github.com/symcon/" . $repo["name"] . "/workflows/Run%20Tests/badge.svg)](https://github.com/symcon/" . $repo["name"] . "/actions)" . " | ";
@@ -131,9 +161,12 @@ foreach($repos as $repo) {
             $content .= " ✅";
         }
         $content .= " | ";
-        if (hasURL($repo["name"])) {
-            $content .= " ✅";
-        }
+        $content .= match (hasURL($repo["name"])) {
+            0 => "",
+            1 => "🟠",
+            2 => "✅",
+            default => "",
+        };
         $content .= PHP_EOL;
 
         $count++;
@@ -194,20 +227,30 @@ foreach($repos as $repo) {
 
 file_put_contents("README.md", $content);
 
-//Copy&Paste: https://www.php.net/manual/de/reserved.variables.httpresponseheader.php
-function parseHeaders($headers)
+var_dump($modules);
+
+class Module
 {
-    $head = array();
-    foreach($headers as $k => $v) {
-        $t = explode(':', $v, 2);
-        if(isset($t[1])) {
-            $head[ trim($t[0]) ] = trim($t[1]);
-        } else {
-            $head[] = $v;
-            if(preg_match("#HTTP/[0-9\.]+\s+([0-9]+)#", $v, $out)) {
-                $head['reponse_code'] = intval($out[1]);
-            }
+    public String $moduleName;
+    public bool $inStore;
+    public string $url;
+    public int $urlStatus; // 0 = missing, 1 = documentation is redirect to github, 2 = ok
+    public string $bundleID;
+    public string $libraryName;
+
+    public function __construct($module, $bundleID)
+    {
+        $replaceSpecialCharacters = function ($name): string {
+            return preg_replace(["/[äÄ]/","/[üÜ]/","/[öÖ]/", "/ /","/-/", "/\(/", "/\)/", "/\//" ], ["ae", "ue", "oe", "","", "","", ""], $name);
+        };
+
+        $this->moduleName = $replaceSpecialCharacters(strtolower($module["name"]));
+        $this->inStore = $module["channel"] == "stable" && $module["status"] == "released";
+        $this->urlStatus = array_key_exists("documentation", $module) ? (strpos($module["documentation"], "/github/") !== false ? 1 : 2) : 0;
+        if($this->urlStatus == 2) {
+            $this->url = $module["documentation"];
         }
+        $this->libraryName = json_decode($module["infoJSON"],true)["library"]["name"];
+        $this->bundleID = $bundleID;
     }
-    return $head;
 }
