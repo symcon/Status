@@ -77,9 +77,11 @@ $opts = [
     ]
 ];
 $context = stream_context_create($opts);
-$repos = json_decode(file_get_contents("https://api.github.com/user/14051084/repos?per_page=100", false, $context), true);
-if(sizeof($repos) == 100) {
-    die("We need to implement pagination");
+
+$repos = json_decode(file_get_contents("https://api.github.com/user/14051084/repos?per_page=200", false, $context), true);
+
+if (sizeof($repos) == 200) {
+    die("We need to implement pagination ".sizeof($repos));
 }
 
 // get the modules from the dump endpoint
@@ -171,7 +173,7 @@ $content .= "Name | Style | Tests | Store | URL" . PHP_EOL;
 $content .= "---- | ----- | ----- | ----- | ---" . PHP_EOL;
 
 $count = 0;
-foreach($repos as $repo) {
+foreach ($repos as $repo) {
     if (filterRepo($repo["name"])) {
         continue;
     }
@@ -212,7 +214,7 @@ $content .= PHP_EOL;
 $content .= "Name |" . PHP_EOL;
 $content .= "---- |" . PHP_EOL;
 
-foreach($repos as $repo) {
+foreach ($repos as $repo) {
     if (filterRepo($repo["name"])) {
         continue;
     }
@@ -229,7 +231,7 @@ $content .= PHP_EOL;
 $content .= "Name |" . PHP_EOL;
 $content .= "---- |" . PHP_EOL;
 
-foreach($repos as $repo) {
+foreach ($repos as $repo) {
     if (filterRepo($repo["name"])) {
         continue;
     }
@@ -246,7 +248,7 @@ $content .= PHP_EOL;
 $content .= "Name |" . PHP_EOL;
 $content .= "---- |" . PHP_EOL;
 
-foreach($repos as $repo) {
+foreach ($repos as $repo) {
     if (filterRepo($repo["name"])) {
         continue;
     }
