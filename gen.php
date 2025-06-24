@@ -57,10 +57,10 @@ $opts = [
 
 $context = stream_context_create($opts);
 
-$repos = json_decode(file_get_contents("https://api.github.com/user/14051084/repos?per_page=100", false, $context), true);
+$repos = json_decode(file_get_contents("https://api.github.com/user/14051084/repos?per_page=200", false, $context), true);
 
-if(sizeof($repos) == 100) {
-    die("We need to implement pagination");
+if (sizeof($repos) == 200) {
+    die("We need to implement pagination ".sizeof($repos));
 }
 
 $modules = json_decode(file_get_contents("https://symcon-store.s3.eu-west-1.amazonaws.com/modules.json"));
@@ -115,7 +115,7 @@ $content .= "Name | Style | Tests | Store | URL" . PHP_EOL;
 $content .= "---- | ----- | ----- | ----- | ---" . PHP_EOL;
 
 $count = 0;
-foreach($repos as $repo) {
+foreach ($repos as $repo) {
     if (filterRepo($repo["name"])) {
         continue;
     }
@@ -148,7 +148,7 @@ $content .= PHP_EOL;
 $content .= "Name |" . PHP_EOL;
 $content .= "---- |" . PHP_EOL;
 
-foreach($repos as $repo) {
+foreach ($repos as $repo) {
     if (filterRepo($repo["name"])) {
         continue;
     }
@@ -165,7 +165,7 @@ $content .= PHP_EOL;
 $content .= "Name |" . PHP_EOL;
 $content .= "---- |" . PHP_EOL;
 
-foreach($repos as $repo) {
+foreach ($repos as $repo) {
     if (filterRepo($repo["name"])) {
         continue;
     }
@@ -182,7 +182,7 @@ $content .= PHP_EOL;
 $content .= "Name |" . PHP_EOL;
 $content .= "---- |" . PHP_EOL;
 
-foreach($repos as $repo) {
+foreach ($repos as $repo) {
     if (filterRepo($repo["name"])) {
         continue;
     }
@@ -198,13 +198,13 @@ file_put_contents("README.md", $content);
 function parseHeaders($headers)
 {
     $head = array();
-    foreach($headers as $k => $v) {
+    foreach ($headers as $k => $v) {
         $t = explode(':', $v, 2);
-        if(isset($t[1])) {
+        if (isset($t[1])) {
             $head[ trim($t[0]) ] = trim($t[1]);
         } else {
             $head[] = $v;
-            if(preg_match("#HTTP/[0-9\.]+\s+([0-9]+)#", $v, $out)) {
+            if (preg_match("#HTTP/[0-9\.]+\s+([0-9]+)#", $v, $out)) {
                 $head['reponse_code'] = intval($out[1]);
             }
         }
